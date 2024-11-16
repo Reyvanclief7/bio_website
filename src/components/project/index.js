@@ -1,4 +1,3 @@
-import skills from "../skills"
 
 const project = () => {
   return (
