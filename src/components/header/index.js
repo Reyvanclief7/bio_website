@@ -22,11 +22,11 @@ const Header = () => {
         <h1>{header.name}</h1>
         <p>{header.pendidikan}</p>
         <nav>
-          <a href="#about">{header.nav.tentang}</a>
-          <a href="#skills">{header.nav.skills }</a>
-          <a href="#projects">{header.nav.projects}</a>
-          <a href="#experience">{header.nav.experience}</a>
-          <a href="#contact">{header.nav.contact}</a>
+          <a href="#about">{header.tentang}</a>
+          <a href="#skills">{header.skills }</a>
+          <a href="#projects">{header.projects}</a>
+          <a href="#experience">{header.experience}</a>
+          <a href="#contact">{header.contact}</a>
         </nav>
       </div>
     </div>
