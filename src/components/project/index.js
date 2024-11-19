@@ -1,36 +1,37 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import React, { useEffect, useState } from "react";
 
-const project = () => {
+const Project = () => {
+
+  const [project, setProject] = useState([]);
+  useEffect(() => {
+    const db = getDatabase();
+    const projectRef = ref(db, "project");
+    onValue(projectRef, (snapshot) => {
+      const data = snapshot.val();
+      setProject(data);
+    });
+  }, []);
   return (
     <section id="projects" className="section">
     <div className="container">
-      <h2>Proyek</h2>
+      <h2>{project.title}</h2>
       <div className="project">
-        <h3>Sistem Inventory Puskesmas</h3>
+        <h3>{project.text1}</h3>
         <p>
-          Membuat sistem inventaris sederhana untuk Puskesmas dengan
-          menggunakan PHP dan MySQL. Sistem ini dirancang untuk memudahkan
-          pencatatan stok obat, alat medis, dan kebutuhan operasional
-          lainnya.
+          {project.text2}
         </p>
       </div>
       <div className="project">
-        <h3>Website Download Gambar</h3>
+        <h3>{project.text3}</h3>
         <p>
-          Mengembangkan website untuk mendownload gambar bebas, dengan
-          berbagai kategori seperti alam, teknologi, dan seni. Website ini
-          dilengkapi fitur pencarian, kategori gambar, serta sistem unduh
-          yang cepat dan efisien. Proyek ini dirancang untuk memudahkan
-          pengguna dalam mencari dan mendownload gambar berkualitas tinggi
-          untuk berbagai keperluan.
+          {project.text4}
         </p>
       </div>
       <div className="project">
-        <h3>Website Booking Carwash</h3>
+        <h3>{project.text5}</h3>
         <p>
-          Membangun website pemesanan layanan *carwash* online sebagai
-          bagian dari tugas kuliah, menggunakan HTML, CSS, dan PHP. Website
-          ini memiliki fitur pemesanan, pilihan layanan, dan sistem
-          notifikasi.
+         {project.text6}
         </p>
       </div>
     </div>
@@ -38,4 +39,4 @@ const project = () => {
   )
 }
 
-export default project;
+export default Project;

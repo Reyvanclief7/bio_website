@@ -15,9 +15,7 @@ const About = () => {
     <section id="about" className="section">
       <div className="container">
         <h2>{about.title}</h2>
-        <p>
-          {about.subtitle}
-        </p>
+        <p>{about.subtitle}</p>
       </div>
     </section>
   );

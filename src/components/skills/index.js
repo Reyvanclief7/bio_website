@@ -1,24 +1,37 @@
-const skills = () => {
+import { getDatabase, ref, onValue } from "firebase/database";
+import React, { useEffect, useState } from "react";
+
+const Skills = () => {
+
+  const [skills, setSkills] = useState([]);
+  useEffect(() => {
+    const db = getDatabase();
+    const skillsRef = ref(db, "skills");
+    onValue(skillsRef, (snapshot) => {
+      const data = snapshot.val();
+      setSkills(data);
+    });
+  }, []);
   return (
     <section id="skills" className="section">
     <div className="container">
-      <h2>Keahlian</h2>
+      <h2>{skills.title}</h2>
       <div className="skills-container">
         <div className="skill">
-          <h3>Pemrograman</h3>
-          <p>PHP, C#, C++, HTML, CSS, JavaScript, Python</p>
+          <h3>{skills.text1}</h3>
+          <p>{skills.text2}</p>
         </div>
         <div className="skill">
-          <h3>Pengembangan Website</h3>
-          <p>Front-end &amp; Back-end Web Development</p>
+          <h3>{skills.text3}</h3>
+          <p>{skills.text4}</p>
         </div>
         <div className="skill">
-          <h3>Game Development</h3>
-          <p>Dasar-dasar Game Design dan Pengembangan</p>
+          <h3>{skills.text5}</h3>
+          <p>{skills.text6}</p>
         </div>
         <div className="skill">
-          <h3>Basis Data</h3>
-          <p>MySQL, Microsoft SQL Server</p>
+          <h3>{skills.text7}</h3>
+          <p>{skills.text8}</p>
         </div>
       </div>
     </div>
@@ -26,4 +39,4 @@ const skills = () => {
   )
 }
 
-export default skills
+export default Skills
