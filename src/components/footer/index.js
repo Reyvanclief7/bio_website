@@ -1,18 +1,30 @@
-const footer = () => {
+import { getDatabase, ref, onValue } from "firebase/database";
+import React, { useEffect, useState } from "react";
+
+const Footer = () => {
+  const [footer, setFooter] = useState([]);
+  useEffect(() => {
+    const db = getDatabase();
+    const footerRef = ref(db, "footer");
+    onValue(footerRef, (snapshot) => {
+      const data = snapshot.val();
+      setFooter(data);
+    });
+  }, []);
   return (
     <footer>
     <div className="container">
-      <p>© 2024 Reyvan Kalangi. Semua hak cipta dilindungi.</p>
+      <p>{footer.title}</p>
       <div className="footer-links">
-        <a href="#about">Tentang</a>
-        <a href="#skills">Keahlian</a>
-        <a href="#projects">Proyek</a>
-        <a href="#experience">Pengalaman</a>
-        <a href="#contact">Kontak</a>
+        <a href="#about">{footer.about}</a>
+        <a href="#skills">{footer.kontak}</a>
+        <a href="#projects">{footer.project}</a>
+        <a href="#experience">{footer.experience}</a>
+        <a href="#contact">{footer.contact}</a>
       </div>
     </div>
   </footer>
   )
 }
 
-export default footer;
+export default Footer;
